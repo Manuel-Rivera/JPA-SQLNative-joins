@@ -2,10 +2,6 @@ package com.jpanativesql.nativesql;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +14,10 @@ import com.jpanativesql.nativesql.entities.User;
 import com.jpanativesql.nativesql.entities.UserRole;
 import com.jpanativesql.nativesql.repository.StudentRepository;
 import com.jpanativesql.nativesql.repository.UserRepository;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 
 @SpringBootTest
 class NativesqlApplicationTests {
@@ -36,8 +36,8 @@ class NativesqlApplicationTests {
 		studen2.setLastName("Pineda");
 		studen2.setScore(100);
 
-		studentRepository.save(studen);
-		studentRepository.save(studen2);
+		//studentRepository.save(studen);
+		//studentRepository.save(studen2);
 	}
 
 	@Test
