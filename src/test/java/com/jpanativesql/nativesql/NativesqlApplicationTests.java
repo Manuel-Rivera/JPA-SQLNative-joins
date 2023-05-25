@@ -12,9 +12,11 @@ import org.springframework.test.annotation.Rollback;
 import com.jpanativesql.nativesql.entities.Student;
 import com.jpanativesql.nativesql.entities.User;
 import com.jpanativesql.nativesql.entities.UserRole;
+import com.jpanativesql.nativesql.entities.DTOS.IUserRolDTO;
 import com.jpanativesql.nativesql.entities.DTOS.UserRolDTO;
 import com.jpanativesql.nativesql.repository.StudentRepository;
 import com.jpanativesql.nativesql.repository.UserRepository;
+import com.jpanativesql.nativesql.repository.UserRolRepository;
 import com.jpanativesql.nativesql.service.UserRolService;
 
 import jakarta.persistence.EntityManager;
@@ -92,6 +94,9 @@ class NativesqlApplicationTests {
 	private EntityManager entityManager;
 	@Autowired
 	private UserRolService serviceusersol;
+	@Autowired
+	private UserRolRepository userRolRepository;
+
     @Test
 	@Transactional
     public void testFindByRole() {
@@ -118,8 +123,26 @@ class NativesqlApplicationTests {
         List<User> users = userRepository.findByRole("ADMIN");
         users.forEach(user-> System.out.println(user));
 
+
+
+		//------------------Return DTO 
+
+		//Using Entity Manager
+		System.out.println("Using Entity Manager return UserRolDTO");
 		List<UserRolDTO> result=serviceusersol.getUserRol();
 		result.forEach(s->System.out.println(s));
+
+		//Return objects
+		System.out.println("Using Objects return Object[]");
+		List <Object[]>userol=userRolRepository.getUserRolList();
+		userol.forEach(s->System.out.println(s[1]));
+
+		//Using Interface
+		System.out.println("Using Interface return IUserRolDTO");
+		List<IUserRolDTO> useroldto=userRolRepository.getUserRolListInterface();
+		useroldto.forEach(s->System.out.println(s.getrole()));
+
+
     }
 }
 
