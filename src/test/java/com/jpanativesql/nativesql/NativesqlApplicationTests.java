@@ -12,8 +12,10 @@ import org.springframework.test.annotation.Rollback;
 import com.jpanativesql.nativesql.entities.Student;
 import com.jpanativesql.nativesql.entities.User;
 import com.jpanativesql.nativesql.entities.UserRole;
+import com.jpanativesql.nativesql.entities.DTOS.UserRolDTO;
 import com.jpanativesql.nativesql.repository.StudentRepository;
 import com.jpanativesql.nativesql.repository.UserRepository;
+import com.jpanativesql.nativesql.service.UserRolService;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -21,7 +23,7 @@ import jakarta.transaction.Transactional;
 
 @SpringBootTest
 class NativesqlApplicationTests {
-
+//----------------------------------------TEST STUDENT
 	@Autowired
 	StudentRepository studentRepository;
 	@Test
@@ -35,9 +37,8 @@ class NativesqlApplicationTests {
 		studen2.setFirstName("Gaby");
 		studen2.setLastName("Pineda");
 		studen2.setScore(100);
-
-		//studentRepository.save(studen);
-		//studentRepository.save(studen2);
+		studentRepository.save(studen);
+		studentRepository.save(studen2);
 	}
 
 	@Test
@@ -83,10 +84,14 @@ class NativesqlApplicationTests {
 	}
 
 
+	//---------------------------TEST USER ROL
+
 	@Autowired
     private UserRepository userRepository;
 	@PersistenceContext
 	private EntityManager entityManager;
+	@Autowired
+	private UserRolService serviceusersol;
     @Test
 	@Transactional
     public void testFindByRole() {
@@ -112,6 +117,9 @@ class NativesqlApplicationTests {
         // Realizar la consulta utilizando el repositorio
         List<User> users = userRepository.findByRole("ADMIN");
         users.forEach(user-> System.out.println(user));
+
+		List<UserRolDTO> result=serviceusersol.getUserRol();
+		result.forEach(s->System.out.println(s));
     }
 }
 
