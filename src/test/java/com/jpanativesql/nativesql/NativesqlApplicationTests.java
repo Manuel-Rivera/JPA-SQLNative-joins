@@ -125,7 +125,7 @@ class NativesqlApplicationTests {
 
 
 
-		//------------------Return DTO 
+		//------------------Return Using proyections
 
 		//Using Entity Manager
 		System.out.println("Using Entity Manager return UserRolDTO");
@@ -137,7 +137,7 @@ class NativesqlApplicationTests {
 		List <Object[]>userol=userRolRepository.getUserRolList();
 		userol.forEach(s->System.out.println(s[1]));
 
-		//Using Interface
+		//Using projections
 		System.out.println("Using Interface return IUserRolDTO");
 		List<IUserRolDTO> useroldto=userRolRepository.getUserRolListInterface();
 		useroldto.forEach(s->System.out.println(s.getrole()));

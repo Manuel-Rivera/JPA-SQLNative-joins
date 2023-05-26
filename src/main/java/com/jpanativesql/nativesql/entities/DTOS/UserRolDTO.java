@@ -9,15 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRolDTO implements Serializable,IUserRolDTO{
+public class UserRolDTO implements Serializable{
     private String username;
     private String role;
-    @Override
-    public String getusername() {
-        return this.username;
-    }
-    @Override
-    public String getrole() {
-        return this.role;
-    }
 }
